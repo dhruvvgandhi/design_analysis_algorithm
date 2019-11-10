@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include<time.h>
+
+search(int arr[], int n, int x)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        if (arr[i] == x)
+            return i;
+    return -1;
+}
+
+int main()
+{
+    int n,a;
+    printf("Enter the number of element: ");
+    scanf("%d",&n);
+
+
+    printf("\nEnter 1 for best  \nEnter 2 for Average  \nEnter 3 for worst");
+    scanf("%d",&a);
+
+    if(a==1)
+    {
+    double time_spent = 0.0;
+    int a1,arr[n],x;
+    printf("Enter the element which you want to search: ");
+    scanf("%d",&x);
+    int n = sizeof(arr)/sizeof(arr[0]);
+	for(a1=0;a1<n;a1++)
+    {
+        arr[a1]=a1;
+    }
+	clock_t begin = clock();
+    search(arr,n,x);
+    clock_t end = clock();
+	time_spent += (((double)(end - begin) / CLOCKS_PER_SEC)*1000);
+    printf("Sorting Time : %f  milisecond", time_spent);
+    }
+
+
+    else if(a==2)
+    {
+    double time_spent = 0.0;
+    int a2,arr2[n],x;
+    printf("Enter the element which you want to search: ");
+    scanf("%d",&x);
+    int n = sizeof(arr2)/sizeof(arr2[0]);
+	for(a2=0;a2<n;a2++)
+    {
+        arr2[a2]=rand()%(n)+1;
+    }
+	clock_t begin2 = clock();
+    search(arr2,n,x);
+    clock_t end2 = clock();
+	time_spent += (((double)(end2 - begin2) / CLOCKS_PER_SEC)*1000);
+    printf("Sorting Time : %f  milisecond", time_spent);
+    }
+
+    if(a==3)
+    {
+    double time_spent = 0.0;
+    int a3,arr3[n],x;
+     printf("Enter the element which you want to search: ");
+    scanf("%d",&x);
+    int n = sizeof(arr3)/sizeof(arr3[0]);
+	for(a3=0;a3<n;a3++)
+    {
+        arr3[a3]=n-a3;
+    }
+	clock_t begin3 = clock();
+    search(arr3,n,x);
+    clock_t end3 = clock();
+		time_spent += (((double)(end3 - begin3) / CLOCKS_PER_SEC)*1000);
+    printf("Sorting Time : %f  milisecond", time_spent);
+    }
+}

@@ -1,0 +1,121 @@
+#include <stdio.h> 
+#include <time.h> 
+#include <math.h> 
+ 
+void merge_sort(int arr[],int p, int r) 
+{ 
+    int q; 
+    if (p < r) 
+    { 
+        q = (p+r)/2; 
+        //printf("%d\n",q); 
+        merge_sort(arr,p,q); 
+        merge_sort(arr,q+1,r); 
+        sort(arr,p,q,r); 
+    } 
+} 
+ 
+void sort(int arr[], int p, int q, int r) 
+{ 
+    int i,j,k; 
+    int n1 = q - p + 1; 
+    int n2 = r - q; 
+ 
+    int Left[n1], Right[n2]; 
+ 
+    Left[n1+1] = INFINITY; 
+    Right[n2+1] = INFINITY; 
+ 
+    for (i = 0; i < n1; i++) 
+    { 
+        Left[i] = arr[p + i]; 
+    } 
+ 
+    for (j = 0; j < n2; j++) 
+    { 
+        Right[j] = arr[q + 1+ j]; 
+    } 
+ 
+    i = 0; 
+    j = 0; 
+    k = p; 
+ 
+    while(i < n1 && j < n2) 
+    { 
+        if (Left[i] <= Right[j]) 
+        { 
+            arr[k] = Left[i]; 
+            i++; 
+ } 
+        else 
+        { 
+            arr[k] = Right[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+    while (i < n1) 
+    { 
+        arr[k] = Left[i]; 
+        i++; 
+        k++; 
+    } 
+ 
+    /* Copy the remaining elements of R[], if there 
+       are any */ 
+    while (j < n2) 
+    { 
+        arr[k] = Right[j]; 
+        j++; 
+        k++; 
+    } 
+} 
+int main() 
+{ 
+    int n,a; 
+    int w = 0; 
+    printf("Enter the number of element: "); 
+    scanf("%d",&n); 
+printf("Enter 1 for Best case : \n"); 
+    printf("Enter 2 for Average case : \n"); 
+    printf("Enter 3 for Worst case : \n"); 
+    scanf("%d",&a); 
+ 
+    if(a==1) 
+    { 
+    int a1,arr[n]; 
+    for(a1=0;a1<n;a1++) 
+    { 
+        arr[a1]=a1; 
+    } 
+ clock_t start1 = clock(); 
+    merge_sort(arr,w,n); 
+ clock_t end1 = clock(); 
+ printf("\nTime %f",((double)(end1-start1)/CLOCKS_PER_SEC)*1000); 
+ } 
+ else if(a==2) 
+    { 
+    int a2,arr[n]; 
+    for(a2=0;a2<n;a2++) 
+    { 
+        arr[a2]=rand()%(n+1); 
+    } 
+ clock_t start2 = clock(); 
+    merge_sort(arr,w,n); 
+ clock_t end2 = clock(); 
+ printf("\nTime %f",((double)(end2-start2)/CLOCKS_PER_SEC)*1000); 
+ } 
+ if(a==3) 
+    { 
+    int a3,arr[n]; 
+ double time_spent = 0.0; 
+ for(a3=0;a3<n;a3++) 
+    { 
+        arr[a3]=n-a3-1; 
+    } 
+ clock_t start3 = clock(); 
+    merge_sort(arr,w,n); 
+ clock_t end3 = clock(); 
+ printf("\nTime %f",((double)(end3-start3)/CLOCKS_PER_SEC)*1000); 
+    } 
+} 

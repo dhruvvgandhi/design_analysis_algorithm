@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include <time.h>
+void quicksort(long int a[],int first,int last){
+   int i, j, pivot, temp;
+   if(first<last){
+      pivot=first;
+      i=first;
+      j=last;
+
+      while(i<j)
+      {
+         while(a[i]<=a[pivot]&&i<last)
+            i++;
+         while(a[j]>a[pivot])
+            j--;
+         if(i<j)
+         {
+            temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+         }
+      }
+      temp=a[pivot];
+      a[pivot]=a[j];
+      a[j]=temp;
+      quicksort(a,first,j-1);
+      quicksort(a,j+1,last);
+   }
+}
+
+int main(){
+    long int n,a[100000];
+
+    printf("How many elements are u going to enter?: ");
+    scanf("%d",&n);
+    int no;
+    printf("Enter 1 for Best case : \n");
+    printf("Enter 2 for Average case : \n");
+    printf("Enter 3 for Worst case : \n");
+    scanf("%d",&no);
+    if(no == 1)
+    {
+        int i;
+        int a[n];
+        for(i=0;i<n;i++)
+        {
+            a[i]=i;
+        }
+        clock_t start = clock();
+        quicksort(a,0,n-1);
+        clock_t end=clock();
+        printf("\nTime %f",((double)(end-start)/CLOCKS_PER_SEC)*100000);
+        }
+    else if(no == 2)
+    {
+        int i;
+        int a[n];
+        for(i=0;i<n;i++)
+        {
+            a[i]=rand()%(n)+1;
+        }
+        clock_t start1=clock();
+        quicksort(a,0,n-1);
+        clock_t end1=clock();
+        printf("\nTime %f",((double)(end1-start1)/CLOCKS_PER_SEC)*100000);
+
+    }
+    else if(no == 3)
+    {
+        int i;
+        int a[n];
+        for(i=0;i<n;i++)
+        {
+            a[i]=n-i;
+        }
+        clock_t start = clock();
+        quicksort(a,0,n-1);
+        clock_t end=clock();
+        printf("\nTime %f",((double)(end-start)/CLOCKS_PER_SEC)*100000);
+    }
+    else
+    {
+        printf("Enter Valid Choice");
+    }
+    return 0;
+}

@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void binary_search(int arr[],int n)
+{
+
+    int low,mid,high,key,flag=1;
+
+
+    printf("\nFind element : ");
+    scanf("%d",&key);
+
+    low=0;high=n-1;
+
+
+    while(low<=high){
+            mid=(low+high)/2;
+            if(key>arr[mid]){
+                low = mid + 1;
+            }
+            else if(key<arr[mid]){
+                high = mid - 1;
+            }
+            else{
+                printf("\nElement is found : %d",arr[mid]);
+                break;
+            }
+
+    }
+}
+
+
+int main(){
+
+    int n;
+
+    printf("number of elements : ");
+    scanf("%d",&n);
+
+
+    int a;
+
+    printf("\nPress 1 for BEST \t\t Press 2 for AVERAGE \t\t Press 3 for WORST \t : ");
+    scanf("%d",&a);
+
+
+    if(a == 1){
+        int a1;
+        int arr1[n];
+
+        for(a1=0;a1<n;a1++){
+            arr1[a1]=a1;
+        }
+
+        clock_t start = clock();
+        binary_search(arr1,n);
+        clock_t end=clock();
+
+        printf("\nTime %f ms",((double)(end-start)/1000)/CLOCKS_PER_SEC);
+    }
+
+
+    else if(a == 2){
+        int a2;
+        int arr2[n];
+
+        for(a2=0;a2<n;a2++){
+            arr2[a2]=a2;
+        }
+
+        clock_t start1 = clock();
+        binary_search(arr2,n);
+        clock_t end1=clock();
+
+        printf("\nTime %f",((double)(end1-start1)/1000)/CLOCKS_PER_SEC);
+    }
+
+
+    else if(a == 3){
+        int a3;
+        int arr3[n];
+
+        for(a3=0;a3<n;a3++){
+            arr3[a3]=a3;
+        }
+
+        clock_t start3=clock();
+        binary_search(arr3,n);
+        clock_t end3=clock();
+
+        printf("\nTime %f",((double)(end3-start3)/1000)/CLOCKS_PER_SEC);
+    }
+
+    else{
+        printf("Please enter numbers from 1,2 or 3");
+    }
+}

@@ -1,0 +1,68 @@
+#include <stdio.h> 
+#include <time.h> 
+ 
+void insertionSort(int arr[], int n) 
+{ 
+    int i,temp, j; 
+    for ( i= 1 ; i<= n-1; i++) { 
+    j = i; 
+ 
+    while ( j > 0 && arr[j-1] > arr[j]) { 
+        temp= arr[j]; 
+      arr[j]=arr[j-1]; 
+      arr[j-1]=temp; 
+        j--; 
+    } 
+  } 
+} 
+int main() 
+{ 
+    int n,a; 
+    printf("Enter the number of element: "); 
+    scanf("%d",&n); 
+ 
+    printf("Enter 1 for Best case : \n"); 
+    printf("Enter 2 for Average case : \n"); 
+    printf("Enter 3 for Worst case : \n"); 
+    scanf("%d",&a); 
+ 
+    if(a==1) 
+    { 
+    int a1,arr[n]; 
+    for(a1=0;a1<n;a1++) 
+    { 
+        arr[a1]=a1; 
+    } 
+ clock_t start1 = clock(); 
+    insertionSort(arr,n); 
+ clock_t end1 = clock(); 
+ printf("\nTime %f",((double)(end1-start1)/CLOCKS_PER_SEC)*1000); 
+ } 
+    else if(a==2) 
+    { 
+    int a2,arr2[n]; 
+    for(a2=0;a2<n;a2++) 
+    { 
+        arr2[a2]=rand()%(n)+1; 
+    } 
+ clock_t start2 = clock(); 
+ insertionSort(arr2,n); 
+    clock_t end2 = clock(); 
+ printf("\nTime %f",((double)(end2-start2)/CLOCKS_PER_SEC)*1000); 
+ } 
+ 
+    if(a==3) 
+    { 
+    int a3,arr3[n]; 
+ 
+ double time_spent = 0.0; 
+ for(a3=0;a3<n;a3++) 
+    { 
+        arr3[a3]=n-a3; 
+    } 
+ clock_t start3 = clock(); 
+    insertionSort(arr3,n); 
+    clock_t end3 = clock(); 
+ printf("\nTime %f",((double)(end3-start3)/CLOCKS_PER_SEC)*1000); 
+    } 
+} 

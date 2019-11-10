@@ -1,0 +1,118 @@
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <time.h> 
+ 
+best (int arr[], int n1)  
+{ 
+    int i,j,temp;  
+    int flag; 
+  for(i=0;i<n1-1;i++)  
+    { 
+        for(j=0;j<n1-1-i;j++) 
+{ 
+            flag=1;              
+if (arr[j]>arr[j+1]) 
+            {                 temp=arr[j]; 
+		arr[j]=arr[j+1];
+		   arr[j+1]=temp;  
+                flag=0;  
+            } 
+            if(!flag)  
+            { 
+                break;
+            } 
+        } 
+    } 
+} 
+ 
+ 
+avg(int arr2[],int n2) 
+{ 
+    int i,j,temp; 
+    for(i=0;i<n2;i++) 
+    { 
+	 for(j=0;j<n2;j++) 
+        
+            if(arr2[j]>arr2[j+1])   
+            { 
+                temp=arr2[j]; 
+                arr2[j]=arr2[j+1]; 
+                arr2[j+1]=temp; 
+            } 
+        } 
+    } 
+}  
+worst(int arr3[],int n3) 
+{ 
+    int i,j,temp; 
+    for(i=0;i<n3;i++) 
+    { 
+        for(j=0;j<n3-i-1;j++)  
+        { 
+            if(arr3[j]>arr3[j+1])  
+            { 
+                temp=arr3[j]; 
+                arr3[j]=arr3[j+1]; 
+                arr3[j+1]=temp; 
+            } 
+        } 
+    } 
+} 
+int main() 
+{ 
+    int n;  
+    printf("Enter the number of Elements : "); 
+    scanf("%d",&n); 
+    int a;  
+    printf("Enter 1 for Best case : \n"); 
+    printf("Enter 2 for Average case : \n"); 
+    printf("Enter 3 for Worst case : \n"); 
+    scanf("%d",&a); 
+    if(a == 1)  
+    { 
+         
+        int a1; 
+        int arr[n];  
+        for(a1=0;a1<n;a1++) 
+        { 
+            arr[a1]=a1;         } 
+        best(arr,n); 
+	clock_t start = clock(); 
+        best(arr,n);  
+        clock_t end=clock();
+        printf("\nTime %f",((double)(end-start)/1000)/CLOCKS_PER_SEC); 
+    } 
+    else if(a == 2) 
+    { 
+         
+        int arr2[n]; 
+        int a2; 
+        for(a2=0;a2<n;a2++) 
+        { 
+            arr2[a2]=rand()%(n)+1;  
+        } 
+        avg(arr2,n); 
+        clock_t start1=clock();
+        avg(arr2,n);  
+        clock_t end1=clock(); 
+        printf("\nTime %f",((double)(end1-start1)/1000)/CLOCKS_PER_SEC); 
+    } 
+    else if(a == 3) 
+    { 
+        int arr3[n]; 
+        int a3; 
+        for(a3=0;a3<n;a3++) 
+        { 
+            arr3[a3]=n-a3; 
+ } 
+        worst(arr3,n); 
+        clock_t start3=clock();
+        worst(arr3,n);  
+       clock_t end3=clock(); 
+        printf("\nTime %f",((double)(end3-start3)/1000)/CLOCKS_PER_SEC); 
+    } 
+    else
+        { 
+        printf("Enter Valid Choice"); 
+        } 
+} 
